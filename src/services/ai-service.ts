@@ -6,7 +6,7 @@ interface AIResponse {
 // CV Analysis API
 export const analyzeCv = async (
   cvText: string,
-  apiKey: string = "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", 
+  apiKey: string = "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",
   model: string = "mistralai/mistral-small-3.1-24b-instruct:free"
 ): Promise<{ text?: string; error?: string }> => {
   try {
@@ -59,7 +59,7 @@ ${cvText}`
 export const matchJobDescription = async (
   cvText: string,
   jobDescription: string,
-  apiKey: string = "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",
+  apiKey: string = "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",
   model: string = "mistralai/mistral-small-3.1-24b-instruct:free"
 ): Promise<AIResponse> => {
   try {
@@ -108,12 +108,12 @@ export const matchJobDescription = async (
 // Career Chat API
 export const getCareerAdvice = async (
   question: string,
-  apiKey: string = "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",
-  model: string = "deepseek/deepseek-chat:free"
+  apiKey: string = "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",
+  model: string = "mistralai/mistral-small-3.1-24b-instruct:free"
 ): Promise<AIResponse> => {
   try {
     console.log(`Getting career advice with model: ${model}`);
-    
+
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -136,8 +136,8 @@ export const getCareerAdvice = async (
     return { text: data.choices[0].text };
   } catch (error) {
     console.error('Error getting career advice:', error);
-    return { 
-      error: 'Failed to get career advice. Please check your API key and try again.' 
+    return {
+      error: 'Failed to get career advice. Please check your API key and try again.'
     };
   }
 };
@@ -146,12 +146,12 @@ export const getCareerAdvice = async (
 export const generateSkillsMap = async (
   profile: any,
   targetRole: string,
-  apiKey: string = "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",
+  apiKey: string = "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",
   model: string = "mistralai/mistral-small-3.1-24b-instruct:free"
 ): Promise<AIResponse> => {
   try {
     console.log(`Generating skills map with model: ${model}`);
-    
+
     const profileText = `
       Name: ${profile.name || 'Not specified'}
       Education: ${profile.education || 'Not specified'}
@@ -160,7 +160,7 @@ export const generateSkillsMap = async (
       Career Goals: ${profile.goals || 'Not specified'}
       Target Role: ${targetRole || 'Not specified'}
     `;
-    
+
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -183,8 +183,8 @@ export const generateSkillsMap = async (
     return { text: data.choices[0].text };
   } catch (error) {
     console.error('Error generating skills map:', error);
-    return { 
-      error: 'Failed to generate skills map. Please check your API key and try again.' 
+    return {
+      error: 'Failed to generate skills map. Please check your API key and try again.'
     };
   }
 };
@@ -196,7 +196,7 @@ export const conductMockInterview = async (
   jobDescription: string,
   questionResponse: string = '',
   isStarting: string = 'true',
-  apiKey: string = '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',
+  apiKey: string = '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',
   model: string = 'mistralai/mistral-small-3.1-24b-instruct:free'
 ): Promise<AIResponse> => {
   try {
