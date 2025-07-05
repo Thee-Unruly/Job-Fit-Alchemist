@@ -31,5 +31,6 @@
 - Get personalized feedback and insights to boost your confidence and performance.
 
 ### Team
-- Sidney Muriuki - [Github](https://github.com/mathncode-sid)
+- Sidney Muriuki - [GitHub](https://github.com/mathncode-sid)
+- Eugene Mutembei - [GitHub](https://github.com/CodeWithEugene)
 ---
