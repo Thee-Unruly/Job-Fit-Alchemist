@@ -30,4 +30,6 @@
 - Simulate real interviews with AI-generated questions.
 - Get personalized feedback and insights to boost your confidence and performance.
 
+### Team
+- Sidney Muriuki - [Github](https://github.com/mathncode-sid)
 ---
