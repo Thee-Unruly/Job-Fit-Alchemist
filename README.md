@@ -31,4 +31,4 @@
 ### Team
 - Sidney Muriuki - [GitHub](https://github.com/mathncode-sid)
 - Eugene Mutembei - [GitHub](https://github.com/CodeWithEugene)
----
+- Gordon Kengere - [GitHub](https://github.com/Slonetech)
