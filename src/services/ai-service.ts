@@ -1,3 +1,4 @@
+// frontend/src/services/ai-service.ts
 interface AIResponse {
   text?: string;
   error?: string;
@@ -6,9 +7,9 @@ interface AIResponse {
 // CV Analysis API
 export const analyzeCv = async (
   cvText: string,
-  apiKey: string = "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",
+  apiKey: string = import.meta.env.VITE_CV_ANALYSIS_API_KEY,
   model: string = "mistralai/mistral-small-3.1-24b-instruct:free"
-): Promise<{ text?: string; error?: string }> => {
+): Promise<AIResponse> => {
   try {
     console.log(`Analyzing CV with model: ${model}`);
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
@@ -24,7 +25,7 @@ export const analyzeCv = async (
         messages: [
           {
             role: "system",
-            content: "You are a CV analyzer that provides concise, actionable feedback. Your response MUST include an 'ATS Score: X%' on a line by itself."
+            content: "You are a CV analyzer that provides concise, actionable feedback. Your response MUST include an 'ATS Score: X%' on a line by itself"
           },
           {
             role: "user",
@@ -59,12 +60,11 @@ ${cvText}`
 export const matchJobDescription = async (
   cvText: string,
   jobDescription: string,
-  apiKey: string = "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",
+  apiKey: string = import.meta.env.VITE_JOB_MATCH_API_KEY,
   model: string = "mistralai/mistral-small-3.1-24b-instruct:free"
 ): Promise<AIResponse> => {
   try {
     console.log(`Matching job with model: ${model}`);
-
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -83,20 +83,23 @@ export const matchJobDescription = async (
             content: `CV: ${cvText}\nJob Description: ${jobDescription}`
           }
         ],
-        max_tokens: 600, // Reduced to avoid truncation
+        max_tokens: 600,
         temperature: 0.7,
       }),
     });
 
-    const data = await response.json();
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => null);
+      throw new Error(`API error: ${response.status} - ${JSON.stringify(errorData)}`);
+    }
 
+    const data = await response.json();
     const content = data?.choices?.[0]?.message?.content;
     if (!content) {
       throw new Error(data.error?.message || "No content returned from API");
     }
 
     return { text: content };
-
   } catch (error) {
     console.error("Error matching job description:", error);
     return {
@@ -108,12 +111,11 @@ export const matchJobDescription = async (
 // Career Chat API
 export const getCareerAdvice = async (
   question: string,
-  apiKey: string = "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",
+  apiKey: string = import.meta.env.VITE_CAREER_ADVICE_API_KEY,
   model: string = "mistralai/mistral-small-3.1-24b-instruct:free"
 ): Promise<AIResponse> => {
   try {
     console.log(`Getting career advice with model: ${model}`);
-
     const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -122,18 +124,28 @@ export const getCareerAdvice = async (
       },
       body: JSON.stringify({
         model: model,
-        prompt: `You are a professional career advisor AI assistant. Respond with thoughtful, actionable, and empathetic guidance tailored to the user's career stage, goals, and challenges. Use a warm and encouraging tone, provide relevant examples when appropriate, and aim to empower the user to take confident next steps. Now, address the following career question:\n\n${question}\n\nYour advice:`,
+        messages: [
+          {
+            role: "system",
+            content: "You are a professional career advisor AI assistant. Respond with thoughtful, actionable, and empathetic guidance tailored to the user's career stage, goals, and challenges. Use a warm and encouraging tone, provide relevant examples when appropriate, and aim to empower the user to take confident next steps."
+          },
+          {
+            role: "user",
+            content: `Career question: ${question}`
+          }
+        ],
         max_tokens: 800,
         temperature: 0.7,
       })
     });
 
     if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
+      const errorData = await response.json().catch(() => null);
+      throw new Error(`API error: ${response.status} - ${JSON.stringify(errorData)}`);
     }
 
     const data = await response.json();
-    return { text: data.choices[0].text };
+    return { text: data.choices[0].message.content };
   } catch (error) {
     console.error('Error getting career advice:', error);
     return {
@@ -146,12 +158,11 @@ export const getCareerAdvice = async (
 export const generateSkillsMap = async (
   profile: any,
   targetRole: string,
-  apiKey: string = "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",
+  apiKey: string = import.meta.env.VITE_SKILLS_MAP_API_KEY,
   model: string = "mistralai/mistral-small-3.1-24b-instruct:free"
 ): Promise<AIResponse> => {
   try {
     console.log(`Generating skills map with model: ${model}`);
-
     const profileText = `
       Name: ${profile.name || 'Not specified'}
       Education: ${profile.education || 'Not specified'}
@@ -169,18 +180,28 @@ export const generateSkillsMap = async (
       },
       body: JSON.stringify({
         model: model,
-        prompt: `You are a career development AI assistant. Based on this professional profile and target role, create a detailed skills roadmap with learning resources and milestones:\n\n${profileText}\n\nYour skills roadmap:`,
+        messages: [
+          {
+            role: "system",
+            content: "You are a career development AI assistant. Based on the provided professional profile and target role, create a detailed skills roadmap with learning resources and milestones."
+          },
+          {
+            role: "user",
+            content: `Profile: ${profileText}\n\nGenerate a skills roadmap for the target role.`
+          }
+        ],
         max_tokens: 1000,
         temperature: 0.7,
       })
     });
 
     if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
+      const errorData = await response.json().catch(() => null);
+      throw new Error(`API error: ${response.status} - ${JSON.stringify(errorData)}`);
     }
 
     const data = await response.json();
-    return { text: data.choices[0].text };
+    return { text: data.choices[0].message.content };
   } catch (error) {
     console.error('Error generating skills map:', error);
     return {
@@ -190,22 +211,19 @@ export const generateSkillsMap = async (
 };
 
 // Mock Interview API
-// frontend/src/services/ai-service.ts
 export const conductMockInterview = async (
   jobTitle: string,
   jobDescription: string,
   questionResponse: string = '',
   isStarting: string = 'true',
-  apiKey: string = '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',
-  model: string = 'mistralai/mistral-small-3.1-24b-instruct:free'
+  apiKey: string = import.meta.env.VITE_MOCK_INTERVIEW_API_KEY,
+  model: string = "mistralai/mistral-small-3.1-24b-instruct:free"
 ): Promise<AIResponse> => {
   try {
     console.log(`Conducting mock interview with model: ${model}`);
-
     let prompt;
 
     if (isStarting === 'true') {
-      // Initial prompt to start the interview
       prompt = `
         You are an experienced interviewer conducting a mock interview for the position of "${jobTitle}". 
         Here is the job description: "${jobDescription}"
@@ -218,7 +236,6 @@ export const conductMockInterview = async (
         *Thank you for joining us!* Please share your experience as a **${jobTitle}**...
       `;
     } else {
-      // Follow-up prompt for subsequent interactions
       prompt = `
         You are an experienced interviewer conducting a mock interview for the position of "${jobTitle}". 
         Here is the job description: "${jobDescription}"
@@ -263,7 +280,8 @@ export const conductMockInterview = async (
     });
 
     if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
+      const errorData = await response.json().catch(() => null);
+      throw new Error(`API error: ${response.status} - ${JSON.stringify(errorData)}`);
     }
 
     const data = await response.json();
