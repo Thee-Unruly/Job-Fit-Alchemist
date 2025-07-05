@@ -1,7 +1,5 @@
 # Career Sync AI: AI-Powered Career Assistant Platform
 
-**🚀 Try it out:** _https://cv-career-path-ai.lovable.app/_
-
 ## 🧠 Overview
 
 **Career Sync AI** is an intelligent, multi-feature career assistant platform built to enhance the outcomes of job seekers through automated analysis, personalized insights, and AI-powered guidance.
@@ -31,5 +29,6 @@
 - Get personalized feedback and insights to boost your confidence and performance.
 
 ### Team
-- Sidney Muriuki - [Github](https://github.com/mathncode-sid)
+- Sidney Muriuki - [GitHub](https://github.com/mathncode-sid)
+- Eugene Mutembei - [GitHub](https://github.com/CodeWithEugene)
 ---
