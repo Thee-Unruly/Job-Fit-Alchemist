@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { 
-  LayoutDashboard, 
-  FileText, 
-  BookOpen, 
-  MessageCircle, 
+import {
+  LayoutDashboard,
+  FileText,
+  BookOpen,
+  MessageCircle,
   PieChart,
   User,
   Settings,
-  Menu, 
+  Menu,
   X
 } from 'lucide-react';
 
@@ -62,7 +62,7 @@ const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside 
+    <aside
       className={cn(
         'bg-sidebar border-r border-border transition-all duration-300 h-screen',
         collapsed ? 'w-16' : 'w-64'
@@ -72,14 +72,14 @@ const Sidebar: React.FC = () => {
         {!collapsed && (
           <Link to="/dashboard" className="flex items-center space-x-2">
             <BookOpen className="h-6 w-6 text-primary" />
-            <span className="font-bold text-lg">CareerSync AI</span>
+            <span className="font-bold text-lg">Job Fit Alchemist</span>
           </Link>
         )}
         <Button variant="ghost" size="icon" onClick={toggleSidebar} className="ml-auto">
           {collapsed ? <Menu size={20} /> : <X size={20} />}
         </Button>
       </div>
-      
+
       <div className="py-4">
         <nav className="space-y-1 px-2">
           {navItems.map((item) => (
