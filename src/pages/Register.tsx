@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -34,29 +33,34 @@ const Register: React.FC = () => {
     // Validation
     if (!name.trim()) {
       setError('Name is required');
+      toast.error('Name is required');
       setIsSubmitting(false);
       return;
     }
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
+      toast.error('Passwords do not match');
       setIsSubmitting(false);
       return;
     }
 
     if (password.length < 6) {
       setError('Password must be at least 6 characters long');
+      toast.error('Password must be at least 6 characters long');
       setIsSubmitting(false);
       return;
     }
 
     try {
       await register(email, password, name);
-      toast.success('Registration successful! Please check your email for verification.');
-      navigate('/login');
+      toast.success('Registration successful! You are now logged in.');
+      navigate('/dashboard');
     } catch (error: any) {
       console.error('Registration error:', error);
-      setError(error.message || 'Failed to register. Please try again.');
+      const errorMessage = error.message || 'Failed to register. Please try again.';
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
