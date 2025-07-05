@@ -1,0 +1,5 @@
+
+project_id = "lovable-project"
+
+[functions.send-review]
+verify_jwt = false
