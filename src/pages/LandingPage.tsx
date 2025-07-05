@@ -99,7 +99,7 @@ const LandingPage: React.FC = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Advance Your Career?</h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Join CareerSync AI today and get personalized guidance for your job search and career development.
+            Join Job Fit Alchemist today and get personalized guidance for your job search and career development.
           </p>
           <Button size="lg" variant="secondary" asChild>
             <Link to="/register">Create Your Free Account</Link>
