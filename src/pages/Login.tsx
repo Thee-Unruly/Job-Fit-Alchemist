@@ -26,7 +26,7 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       await login(email, password);
       toast.success('Logged in successfully');
@@ -45,10 +45,10 @@ const Login: React.FC = () => {
         <div className="flex justify-center mb-8">
           <div className="flex items-center space-x-2">
             <BookOpen className="h-8 w-8 text-primary" />
-            <span className="font-bold text-2xl">CareerSync AI</span>
+            <span className="font-bold text-2xl">Job Fit Alchemist</span>
           </div>
         </div>
-        
+
         <Card>
           <CardHeader>
             <CardTitle className="text-2xl">Welcome back</CardTitle>
@@ -105,7 +105,7 @@ const Login: React.FC = () => {
             </CardFooter>
           </form>
         </Card>
-        
+
         <div className="mt-6 text-center text-sm text-muted-foreground">
           By continuing, you agree to our{' '}
           <Link to="/terms" className="underline underline-offset-4">

@@ -58,7 +58,7 @@ const Dashboard: React.FC = () => {
             </div>
             <APIKeyForm />
           </div>
-          
+
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
               <Card key={feature.title} className="flex flex-col">
@@ -75,12 +75,12 @@ const Dashboard: React.FC = () => {
               </Card>
             ))}
           </div>
-          
+
           <Card>
             <CardHeader>
               <CardTitle>Getting Started</CardTitle>
               <CardDescription>
-                Follow these steps to make the most of CareerSync AI
+                Follow these steps to make the most of Job Fit Alchemist
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -95,7 +95,7 @@ const Dashboard: React.FC = () => {
                   Start with the CV Analysis tool to get personalized feedback on your resume.
                 </p>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center space-x-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
@@ -107,7 +107,7 @@ const Dashboard: React.FC = () => {
                   Use the Job Match tool to optimize your CV for specific job applications.
                 </p>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center space-x-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
@@ -119,7 +119,7 @@ const Dashboard: React.FC = () => {
                   Use the Mock Interview tool to practice answering interview questions and get feedback.
                 </p>
               </div>
-              
+
               <div className="space-y-2">
                 <div className="flex items-center space-x-3">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">

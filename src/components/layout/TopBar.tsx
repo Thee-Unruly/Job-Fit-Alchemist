@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 const TopBar: React.FC = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  
+
   const handleLogout = async () => {
     await logout();
     navigate('/login');
@@ -35,9 +35,9 @@ const TopBar: React.FC = () => {
   return (
     <header className="bg-background border-b border-border h-16 flex items-center px-6">
       <div className="flex-1">
-        <h1 className="text-xl font-medium md:hidden">CareerSync AI</h1>
+        <h1 className="text-xl font-medium md:hidden">CJob Fit Alchemist</h1>
       </div>
-      
+
       <div className="flex items-center space-x-4">
         <Button
           variant="outline"
@@ -48,7 +48,7 @@ const TopBar: React.FC = () => {
           <Settings className="h-4 w-4 mr-2" />
           Settings
         </Button>
-        
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-8 w-8 rounded-full">

@@ -76,7 +76,7 @@ const FeedbackButton = () => {
         <DialogHeader>
           <DialogTitle>Send Feedback</DialogTitle>
           <DialogDescription>
-            Help us improve CareerSync AI by sharing your experience, suggestions, or reporting issues.
+            Help us improve Job Fit Alchemist by sharing your experience, suggestions, or reporting issues.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">

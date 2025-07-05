@@ -12,7 +12,7 @@ const LandingPage: React.FC = () => {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <BookOpen className="h-6 w-6 text-primary" />
-            <span className="font-bold text-xl">CareerSync AI</span>
+            <span className="font-bold text-xl">Job Fit Alchemist</span>
           </div>
           <div className="flex space-x-4">
             <Button variant="ghost" asChild>
@@ -24,7 +24,7 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </header>
-      
+
       {/* Hero Section */}
       <section className="bg-gradient-to-b from-blue-50 to-white py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
@@ -44,12 +44,12 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
-      
+
       {/* Features Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Powered by AI to Elevate Your Career</h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="flex flex-col items-center text-center">
               <div className="h-12 w-12 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
@@ -60,7 +60,7 @@ const LandingPage: React.FC = () => {
                 Get detailed feedback on your CV and cover letter with personalized improvement recommendations.
               </p>
             </div>
-            
+
             <div className="flex flex-col items-center text-center">
               <div className="h-12 w-12 rounded-lg bg-teal-100 flex items-center justify-center mb-4">
                 <BookOpenCheck className="h-6 w-6 text-teal-600" />
@@ -70,7 +70,7 @@ const LandingPage: React.FC = () => {
                 Analyze your CV against job descriptions to maximize your match rate and ATS score.
               </p>
             </div>
-            
+
             <div className="flex flex-col items-center text-center">
               <div className="h-12 w-12 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
                 <MessageCircle className="h-6 w-6 text-purple-600" />
@@ -80,7 +80,7 @@ const LandingPage: React.FC = () => {
                 Chat with our AI assistant for personalized career guidance, interview tips, and more.
               </p>
             </div>
-            
+
             <div className="flex flex-col items-center text-center">
               <div className="h-12 w-12 rounded-lg bg-orange-100 flex items-center justify-center mb-4">
                 <BarChart className="h-6 w-6 text-orange-600" />
@@ -93,7 +93,7 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
-      
+
       {/* CTA Section */}
       <section className="bg-primary text-primary-foreground py-16">
         <div className="container mx-auto px-4 text-center">
@@ -106,16 +106,16 @@ const LandingPage: React.FC = () => {
           </Button>
         </div>
       </section>
-      
+
       {/* Footer */}
       <footer className="bg-muted py-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <BookOpen className="h-6 w-6 text-primary" />
-              <span className="font-bold text-xl">CareerSync AI</span>
+              <span className="font-bold text-xl">Job Fit Alchemist</span>
             </div>
-            
+
             <div className="flex space-x-6">
               <Link to="/about" className="text-muted-foreground hover:text-foreground">
                 About
@@ -132,11 +132,11 @@ const LandingPage: React.FC = () => {
             </div>
           </div>
           <div className="mt-8 text-center text-muted-foreground text-sm">
-            &copy; {new Date().getFullYear()} CareerSync AI. All rights reserved.
+            &copy; {new Date().getFullYear()} Job Fit Alchemist. All rights reserved.
           </div>
         </div>
       </footer>
-      
+
       {/* Feedback Button */}
       <FeedbackButton />
     </div>

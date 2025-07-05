@@ -28,7 +28,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    
+
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       return;
@@ -40,12 +40,12 @@ const ResetPassword = () => {
     }
 
     setIsSubmitting(true);
-    
+
     try {
       const { error } = await supabase.auth.updateUser({ password });
 
       if (error) throw error;
-      
+
       toast.success('Password reset successfully!');
       navigate('/login');
     } catch (error: any) {
@@ -62,10 +62,10 @@ const ResetPassword = () => {
         <div className="flex justify-center mb-8">
           <div className="flex items-center space-x-2">
             <BookOpen className="h-8 w-8 text-primary" />
-            <span className="font-bold text-2xl">CareerSync AI</span>
+            <span className="font-bold text-2xl">Job Fit Alchemist</span>
           </div>
         </div>
-        
+
         <Card>
           <CardHeader>
             <CardTitle className="text-2xl">Set New Password</CardTitle>
@@ -80,7 +80,7 @@ const ResetPassword = () => {
                   {error}
                 </div>
               )}
-              
+
               <div className="space-y-2">
                 <Label htmlFor="password">New Password</Label>
                 <Input
@@ -106,9 +106,9 @@ const ResetPassword = () => {
               </div>
             </CardContent>
             <CardFooter className="flex flex-col space-y-4">
-              <Button 
-                type="submit" 
-                className="w-full" 
+              <Button
+                type="submit"
+                className="w-full"
                 disabled={isSubmitting || !!error}
               >
                 {isSubmitting ? (

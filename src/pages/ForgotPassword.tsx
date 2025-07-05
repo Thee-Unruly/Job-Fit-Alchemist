@@ -17,14 +17,14 @@ const ForgotPassword = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/reset-password`,
       });
-      
+
       if (error) throw error;
-      
+
       setIsSubmitted(true);
       toast.success('Password reset email sent! Check your inbox.');
     } catch (error: any) {
@@ -41,20 +41,20 @@ const ForgotPassword = () => {
         <div className="flex justify-center mb-8">
           <div className="flex items-center space-x-2">
             <BookOpen className="h-8 w-8 text-primary" />
-            <span className="font-bold text-2xl">CareerSync AI</span>
+            <span className="font-bold text-2xl">Job Fit Alchemist</span>
           </div>
         </div>
-        
+
         <Card>
           <CardHeader>
             <CardTitle className="text-2xl">Reset Password</CardTitle>
             <CardDescription>
-              {!isSubmitted 
-                ? "Enter your email to receive a password reset link" 
+              {!isSubmitted
+                ? "Enter your email to receive a password reset link"
                 : "Check your email for a password reset link"}
             </CardDescription>
           </CardHeader>
-          
+
           {!isSubmitted ? (
             <form onSubmit={handleSubmit}>
               <CardContent className="space-y-4">
